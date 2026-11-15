@@ -1,0 +1,41 @@
+
+name: Build Blogger Theme
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'src/**'
+      - 'build.py'
+      - '.github/workflows/build-blogger-theme.yml'
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Assemble and validate Blogger XML
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build Blogger theme
+        run: python build.py
+
+      - name: Upload Blogger XML
+        uses: actions/upload-artifact@v4
+        with:
+          name: blogger-theme-xml
+          path: dist/blogger-theme.xml
+          if-no-files-found: error
+          retention-days: 7
