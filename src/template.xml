@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html b:defaultwidgetversion='2' b:layoutsVersion='3' b:responsive='true'
+      expr:dir='data:blog.languageDirection' lang='en'
+      xmlns='http://www.w3.org/1999/xhtml'
+      xmlns:b='http://www.google.com/2005/gml/b'
+      xmlns:data='http://www.google.com/2005/gml/data'
+      xmlns:expr='http://www.google.com/2005/gml/expr'>
+<head>
+  <meta content='width=device-width, initial-scale=1' name='viewport'/>
+  <meta content='text/html; charset=UTF-8' http-equiv='Content-Type'/>
+  <title><data:blog.pageTitle/></title>
+  <b:include data='blog' name='all-head-content'/>
+  <b:skin><![CDATA[
+{{STYLES}}
+  ]]></b:skin>
+</head>
+<body>
+  <!-- Global shell: later stages may refine presentation without changing Blogger regions. -->
+  <div class='site-shell' id='top'>
+    <header class='site-header' role='banner'>
+      <b:section class='header-section' id='header' maxwidgets='1' name='Header' showaddelement='no'>
+        <b:widget id='Header1' locked='true' title='Blog Header' type='Header' version='2'/>
+      </b:section>
+    </header>
+
+    <nav aria-label='Primary navigation' class='primary-navigation' role='navigation'>
+      <div class='navigation-inner'>
+        <button aria-controls='primary-menu' aria-expanded='false' class='menu-toggle' id='menu-toggle' type='button'>
+          <span class='menu-toggle-icon' aria-hidden='true'>&#9776;</span>
+          <span class='menu-toggle-label'>Menu</span>
+        </button>
+        <b:section class='navigation-section' id='primary-menu' maxwidgets='1' name='Navigation' showaddelement='yes'>
+          <b:widget id='PageList1' locked='false' title='Pages' type='PageList' version='2'/>
+        </b:section>
+        <b:section class='navigation-search' id='navigation-search' maxwidgets='1' name='Navigation Search' showaddelement='yes'>
+          <b:widget id='BlogSearch1' locked='false' title='Search' type='BlogSearch' version='2'/>
+        </b:section>
+      </div>
+    </nav>
+
+    <div class='content-layout'>
+      <main class='main-content' id='main-content' role='main'>
+        <b:section class='main-section' id='main' name='Main Content' showaddelement='no'>
+          <b:widget id='Blog1' locked='true' title='Blog Posts' type='Blog' version='2'>
+            <b:includable id='main' var='top'>
+              <b:if cond='data:view.isError'>
+                <section class='page-state page-error'>
+                  <h1>Page not found</h1>
+                  <p>The page you requested could not be found.</p>
+                  <a expr:href='data:blog.homepageUrl'>Return to the homepage</a>
+                </section>
+              <b:else/>
+                <b:if cond='data:view.isSearch'>
+                  <header class='archive-heading'><h1>Search results</h1></header>
+                <b:elseif cond='data:view.isLabelSearch'/>
+                  <header class='archive-heading'><h1>Label: <data:view.search.label/></h1></header>
+                <b:elseif cond='data:view.isArchive'/>
+                  <header class='archive-heading'><h1><data:blog.pageName/></h1></header>
+                </b:if>
+
+                <b:if cond='data:view.isSingleItem'>
+                  <b:loop values='data:posts' var='post'>
+                    <article class='post-entry post-single' itemscope='itemscope' itemtype='https://schema.org/BlogPosting'>
+                      <header class='post-header'>
+                        <h1 class='post-title' itemprop='headline'><data:post.title/></h1>
+                        <div class='post-meta'>
+                          <span class='post-date'><data:post.timestamp/></span>
+                          <span class='post-comment-count'><data:post.numberOfComments/> comments</span>
+                        </div>
+                      </header>
+                      <b:if cond='data:post.featuredImage'>
+                        <div class='post-featured-image'><img expr:alt='data:post.title' expr:src='data:post.featuredImage' itemprop='image'/></div>
+                      </b:if>
+                      <div class='post-body' itemprop='articleBody'><data:post.body/></div>
+                      <footer class='post-footer'>
+                        <div class='post-labels'>
+                          <b:loop values='data:post.labels' var='label'>
+                            <a expr:href='data:label.url'><data:label.name/></a>
+                          </b:loop>
+                        </div>
+                      </footer>
+                      <b:include data='post' name='comments'/>
+                    </article>
+                  </b:loop>
+                <b:else/>
+                  <div class='post-list'>
+                    <b:loop values='data:posts' var='post'>
+                      <article class='post-entry post-card'>
+                        <header class='post-header'>
+                          <h2 class='post-title'><a expr:href='data:post.url'><data:post.title/></a></h2>
+                        </header>
+                        <b:if cond='data:post.featuredImage'>
+                          <a class='post-image-link' expr:href='data:post.url'>
+                            <img class='post-thumbnail' expr:alt='data:post.title' expr:src='data:post.featuredImage'/>
+                          </a>
+                        </b:if>
+                        <div class='post-excerpt'><data:post.snippet/></div>
+                        <a class='read-more' expr:href='data:post.url'>Read more</a>
+                        <footer class='post-meta'>
+                          <span class='post-categories'>
+                            <b:loop values='data:post.labels' var='label'>
+                              <a expr:href='data:label.url'><data:label.name/></a>
+                            </b:loop>
+                          </span>
+                          <a class='post-comment-count' expr:href='data:post.url + &quot;#comments&quot;'><data:post.numberOfComments/> comments</a>
+                        </footer>
+                      </article>
+                    </b:loop>
+                  </div>
+                  <nav aria-label='Post pagination' class='blog-pager'>
+                    <b:if cond='data:newerPageUrl'><a class='newer-posts' expr:href='data:newerPageUrl'>Newer</a></b:if>
+                    <b:if cond='data:olderPageUrl'><a class='older-posts' expr:href='data:olderPageUrl'>Older</a></b:if>
+                  </nav>
+                </b:if>
+              </b:if>
+            </b:includable>
+          </b:widget>
+        </b:section>
+      </main>
+
+      <aside aria-label='Sidebar' class='sidebar' role='complementary'>
+        <b:section class='sidebar-section' id='sidebar' name='Sidebar' showaddelement='yes'>
+          <b:widget id='Label1' locked='false' title='Categories' type='Label' version='2'/>
+          <b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive' version='2'/>
+        </b:section>
+      </aside>
+    </div>
+
+    <footer class='site-footer' role='contentinfo'>
+      <b:section class='footer-section' id='footer' name='Footer' showaddelement='yes'>
+        <b:widget id='Attribution1' locked='true' title='' type='Attribution' version='2'/>
+      </b:section>
+      <div class='copyright'><data:blog.title/> &#169; <data:blog.timestamp/></div>
+    </footer>
+  </div>
+
+  <button aria-label='Back to top' class='back-to-top' id='back-to-top' type='button' title='Back to top'>&#8593;</button>
+  <script type='text/javascript'>//<![CDATA[
+{{SCRIPTS}}
+  //]]></script>
+</body>
+</html>
