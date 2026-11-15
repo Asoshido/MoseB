@@ -1,0 +1,31 @@
+/* Stage 1 structural stylesheet. Visual matching is intentionally reserved for Stage 2. */
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; min-width: 320px; }
+img { max-width: 100%; height: auto; }
+a { color: inherit; }
+button { font: inherit; }
+.site-shell { width: 100%; }
+.site-header, .primary-navigation, .content-layout, .site-footer { width: 100%; }
+.header-section, .navigation-inner, .content-layout, .footer-section { margin-inline: auto; }
+.navigation-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.navigation-section { flex: 1 1 auto; }
+.navigation-search { flex: 0 0 auto; }
+.menu-toggle { display: inline-flex; align-items: center; gap: .5rem; cursor: pointer; }
+.content-layout { display: grid; grid-template-columns: minmax(0, 1fr) minmax(220px, 300px); gap: 2rem; }
+.main-content, .sidebar { min-width: 0; }
+.post-entry { min-width: 0; }
+.post-thumbnail, .post-featured-image img { display: block; width: 100%; }
+.post-meta { display: flex; flex-wrap: wrap; gap: .75rem; }
+.post-labels, .post-categories { display: flex; flex-wrap: wrap; gap: .5rem; }
+.blog-pager { display: flex; justify-content: space-between; gap: 1rem; }
+.site-footer { clear: both; }
+.back-to-top { position: fixed; inset: auto 1rem 1rem auto; z-index: 20; }
+.back-to-top[hidden] { display: none; }
+@media (max-width: 760px) {
+  .content-layout { display: block; }
+  .sidebar { margin-top: 2rem; }
+  .navigation-inner { flex-wrap: wrap; }
+  .navigation-section { flex-basis: 100%; }
+}
