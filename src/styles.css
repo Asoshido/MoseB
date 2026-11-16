@@ -1,11 +1,6 @@
 /* =========================================================
    MOSEB — STAGE 2
-   Homepage visual recreation
    ========================================================= */
-
-/* -------------------------
-   GLOBAL FOUNDATION
-   ------------------------- */
 
 :root {
   color-scheme: light;
@@ -32,7 +27,6 @@ body {
   min-width: 320px;
   background: var(--page-background);
   color: var(--text-color);
-  /* Using a cleaner sans-serif that mimics the reference better */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
@@ -63,20 +57,14 @@ button {
   overflow: hidden;
 }
 
-.site-header,
-.primary-navigation,
-.content-layout,
-.site-footer {
-  width: 100%;
-}
-
 /* -------------------------
-   HEADER / BRANDING
+   HEADER / HARDCODED LOGO
    ------------------------- */
 
 .site-header {
   background: #fff;
   padding: 45px 20px 35px;
+  text-align: center; /* Centers the logo */
 }
 
 .header-section {
@@ -85,45 +73,15 @@ button {
   margin: 0 auto;
 }
 
-.header-section .widget {
-  margin: 0;
+.custom-logo-wrapper {
+  display: inline-block;
 }
 
-/* Header Layout to match reference */
-.header-section .header-widget {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  text-align: left;
-}
-
-.header-section .header-widget h1 {
-  margin: 0;
-  /* Using a serif that mimics the logo script */
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 34px;
-  font-weight: 400;
-  line-height: 1.1;
-  font-style: italic; /* Mimics the Olubunmi Mabel script */
-  letter-spacing: -0.5px;
-}
-
-.header-section .header-widget h1 a {
-  color: #2c5b58; /* Teal color from logo */
-}
-
-.header-section .descriptionwrapper {
-  margin: 0;
-}
-
-.header-section .description {
-  margin: 0;
-  color: #7a7a7a;
-  font-family: Georgia, serif;
-  font-size: 14px;
-  line-height: 1.4;
-  max-width: 60px; /* Forces the tagline to stack vertically */
+.custom-logo-image {
+  max-width: 100%;
+  height: auto;
+  max-height: 80px; /* Prevents logo from being too tall */
+  width: auto;
 }
 
 /* -------------------------
@@ -175,10 +133,6 @@ button {
   min-width: 0;
 }
 
-.navigation-section .widget {
-  margin: 0;
-}
-
 .navigation-section .widget h2 {
   display: none;
 }
@@ -193,11 +147,6 @@ button {
   list-style: none;
 }
 
-.navigation-section .widget-content li {
-  margin: 0;
-  padding: 0;
-}
-
 .navigation-section .widget-content li a {
   display: block;
   padding: 15px 12px;
@@ -206,15 +155,8 @@ button {
   font-weight: 600;
   letter-spacing: 1px;
   text-transform: uppercase;
-  transition: color .2s ease;
 }
 
-.navigation-section .widget-content li a:hover,
-.navigation-section .widget-content li.selected a {
-  color: var(--accent-dark);
-}
-
-/* Hide the giant search bar in the nav, just show icon on mobile */
 .navigation-search {
   flex: 0 0 auto;
 }
@@ -237,7 +179,6 @@ button {
   min-height: 35px;
   padding: 7px 10px;
   border: 1px solid var(--border-color);
-  border-radius: 0;
   outline: none;
   background: #fff;
   color: #444;
@@ -272,59 +213,48 @@ button {
   min-width: 0;
 }
 
-.main-section {
-  width: 100%;
-}
-
 .main-section .widget h2 {
   display: none;
 }
 
 /* -------------------------
-   ARTICLE LIST
+   ARTICLE LIST (HOMEPAGE)
    ------------------------- */
 
 .post-list {
   width: 100%;
 }
 
-.post-entry {
-  min-width: 0;
-}
-
 .post-card {
   margin: 0 0 60px;
   padding: 0;
+  /* Ensure nothing overlaps */
+  display: flex;
+  flex-direction: column;
 }
 
-.post-header {
+/* The Title */
+.post-card .post-header {
   margin: 0;
+  order: 1; /* Title first */
 }
 
 .post-card .post-title {
   margin: 0 0 20px;
   color: #000;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 28px;
-  font-weight: 800; /* Very bold title */
+  font-weight: 800;
   line-height: 1.25;
-  overflow-wrap: break-word;
 }
 
-.post-card .post-title a {
-  color: inherit;
-}
-
-/* -------------------------
-   FEATURED IMAGES
-   ------------------------- */
-
+/* The Image */
 .post-image-link {
   display: block;
   width: 100%;
   margin: 0 0 25px;
   overflow: hidden;
   background: #f5f5f5;
+  order: 2; /* Image second */
 }
 
 .post-thumbnail {
@@ -335,61 +265,44 @@ button {
   object-fit: cover;
 }
 
-/* -------------------------
-   ARTICLE EXCERPTS
-   ------------------------- */
-
+/* The Excerpt */
 .post-excerpt {
   margin: 0 0 25px;
   color: #444;
   font-size: 18px;
-  font-weight: 400;
   line-height: 1.8;
-  overflow-wrap: break-word;
+  order: 3;
 }
 
-/* -------------------------
-   READ MORE BUTTON
-   ------------------------- */
-
+/* Read More Button */
 .read-more {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  align-self: flex-start; /* Prevents button from stretching full width */
   min-height: 44px;
   margin: 0 0 25px;
   padding: 10px 25px;
-  border: 1px solid #000; /* Thin black border */
-  border-radius: 0;
-  background: #fff; /* White background */
+  border: 1px solid #000;
+  background: #fff;
   color: #000;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 1.5px;
-  line-height: 1.3;
-  text-align: center;
   text-transform: uppercase;
-  transition: background .2s ease, color .2s ease;
+  order: 4;
 }
 
-.read-more:hover {
-  background: #000;
-  color: #fff;
-}
-
-/* -------------------------
-   ARTICLE METADATA
-   ------------------------- */
-
+/* Metadata */
 .post-meta {
   display: flex;
-  flex-direction: column; /* Stacks them vertically like the reference */
+  flex-direction: column;
   align-items: flex-start;
   gap: 8px;
   margin: 0;
   color: var(--muted-color);
   font-size: 13px;
-  line-height: 1.6;
+  order: 5;
 }
 
 .post-categories, .post-comment-count {
@@ -408,7 +321,6 @@ button {
 .post-labels a {
   color: var(--muted-color);
   font-size: 13px;
-  text-transform: capitalize; /* Not uppercase in reference */
 }
 
 /* -------------------------
@@ -433,37 +345,6 @@ button {
   padding: 8px 15px;
   border: 1px solid var(--border-color);
   color: var(--accent-color);
-  font-size: 14px;
-}
-
-/* -------------------------
-   SIDEBAR
-   ------------------------- */
-
-.sidebar-section .widget {
-  margin: 0 0 35px;
-}
-
-.sidebar-section .widget h2 {
-  margin: 0 0 16px;
-  padding-bottom: 10px;
-  border-bottom: 1px solid var(--border-color);
-  color: #000;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.sidebar-section ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.sidebar-section li {
-  padding: 9px 0;
-  border-bottom: 1px solid #f0f0f0;
-  color: #777;
   font-size: 14px;
 }
 
@@ -573,7 +454,7 @@ button {
   height: 44px;
   padding: 0;
   border: 0;
-  background: #999; /* Grey background */
+  background: #999;
   color: #fff;
   font-size: 20px;
 }
@@ -586,19 +467,11 @@ button {
 
   /* HEADER */
   .site-header {
-    padding: 40px 20px 30px;
+    padding: 30px 15px 25px;
   }
 
-  .header-section .header-widget {
-    gap: 15px;
-  }
-
-  .header-section .header-widget h1 {
-    font-size: 32px;
-  }
-
-  .header-section .description {
-    font-size: 13px;
+  .custom-logo-image {
+    max-height: 60px;
   }
 
   /* NAVIGATION */
@@ -616,7 +489,6 @@ button {
     justify-self: start;
   }
 
-  /* Hide the input field in mobile nav, show only search icon */
   .navigation-search form input[type="text"],
   .navigation-search form input[type="search"],
   .navigation-search form input[name="q"],
@@ -625,7 +497,7 @@ button {
   }
 
   .navigation-search form::before {
-    content: '\1F50D'; /* Magnifying glass icon */
+    content: '\1F50D';
     font-size: 18px;
     cursor: pointer;
   }
@@ -662,16 +534,20 @@ button {
     padding: 30px 20px 50px;
   }
 
-  /* ARTICLE CARDS */
+  /* ARTICLE CARDS - CRUCIAL FIXES HERE */
   .post-card {
     margin-bottom: 60px;
   }
 
+  /* Force title to be visible on mobile */
   .post-card .post-title {
     font-size: 26px;
+    display: block;
+    visibility: visible;
+    margin-bottom: 15px;
   }
 
-  /* MAKE FEATURED IMAGE EDGE-TO-EDGE (Crucial Fix) */
+  /* Make image edge-to-edge without breaking the layout */
   .post-image-link {
     width: calc(100% + 40px);
     margin: 0 -20px 25px;
