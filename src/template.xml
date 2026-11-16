@@ -18,13 +18,16 @@
 <body>
   <div class='site-shell' id='top'>
 
-    <!-- HEADER -->
+    <!-- HEADER (HARDCODED IMAGE) -->
     <header class='site-header' role='banner'>
-      <b:section class='header-section' id='header'
-                 maxwidgets='1' name='Header' showaddelement='no'>
-        <b:widget id='Header1' locked='true'
-                  title='Blog Header' type='Header' version='2'/>
-      </b:section>
+      <div class='header-section'>
+        <div class='custom-logo-wrapper'>
+          <!-- REPLACE THE URL BELOW WITH YOUR GITHUB IMAGE URL -->
+          <a href='/'>
+            <img src='https://raw.githubusercontent.com/Asoshido/MoseB/refs/heads/main/assets/Olabunmi_Mabel_Canva_Editable.pptx_20261115_144737_0000.png' alt='Top Love Hacks' class='custom-logo-image'/>
+          </a>
+        </div>
+      </div>
     </header>
 
     <!-- PRIMARY NAVIGATION -->
@@ -50,7 +53,6 @@
                     title='Pages' type='PageList' version='2'/>
         </b:section>
 
-        <!-- Search is now hidden behind a simple icon on mobile -->
         <b:section class='navigation-search'
                    id='navigation-search'
                    maxwidgets='1'
@@ -158,16 +160,16 @@
                         <!-- 4. READ MORE -->
                         <a class='read-more' expr:href='data:post.url'>Read more</a>
 
-                        <!-- 5. METADATA (Stacked vertically to match reference) -->
+                        <!-- 5. METADATA -->
                         <footer class='post-meta'>
                           <span class='post-categories'>
-                            <i class='meta-icon'>&#128193;</i> <!-- Folder icon -->
+                            <i class='meta-icon'>&#128193;</i>
                             <b:loop values='data:post.labels' var='label'>
                               <a expr:href='data:label.url'><data:label.name/></a>
                             </b:loop>
                           </span>
                           <a class='post-comment-count' expr:href='data:post.url + &quot;#comments&quot;'>
-                            <i class='meta-icon'>&#128172;</i> <!-- Speech bubble icon -->
+                            <i class='meta-icon'>&#128172;</i>
                             <data:post.numberOfComments/> comments
                           </a>
                         </footer>
@@ -192,11 +194,10 @@
         </b:section>
       </main>
 
-      <!-- SIDEBAR -->
+      <!-- SIDEBAR (EMPTIED TO REMOVE BLOGGER DEFAULT WIDGETS) -->
       <aside aria-label='Sidebar' class='sidebar' role='complementary'>
         <b:section class='sidebar-section' id='sidebar' name='Sidebar' showaddelement='yes'>
-          <b:widget id='Label1' locked='false' title='Categories' type='Label' version='2'/>
-          <b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive' version='2'/>
+           <!-- Widgets removed. You can add your own here later if needed. -->
         </b:section>
       </aside>
     </div>
