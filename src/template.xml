@@ -37,7 +37,7 @@
                 class='menu-toggle'
                 id='menu-toggle'
                 type='button'>
-          <span class='menu-toggle-icon' aria-hidden='true'>&#9776;</span>
+          <span class='menu-toggle-icon' aria-hidden='true'>&#10005;</span>
           <span class='menu-toggle-label'>Menu</span>
         </button>
 
@@ -50,6 +50,7 @@
                     title='Pages' type='PageList' version='2'/>
         </b:section>
 
+        <!-- Search is now hidden behind a simple icon on mobile -->
         <b:section class='navigation-search'
                    id='navigation-search'
                    maxwidgets='1'
@@ -77,61 +78,38 @@
 
               <!-- ERROR PAGE -->
               <b:if cond='data:view.isError'>
-
                 <section class='page-state page-error'>
                   <h1>Page not found</h1>
                   <p>The page you requested could not be found.</p>
-                  <a expr:href='data:blog.homepageUrl'>
-                    Return to the homepage
-                  </a>
+                  <a expr:href='data:blog.homepageUrl'>Return to the homepage</a>
                 </section>
-
               <b:else/>
 
                 <!-- SEARCH, LABEL AND ARCHIVE HEADINGS -->
                 <b:if cond='data:view.isSearch'>
-                  <header class='archive-heading'>
-                    <h1>Search results</h1>
-                  </header>
+                  <header class='archive-heading'><h1>Search results</h1></header>
                 <b:elseif cond='data:view.isLabelSearch'/>
-                  <header class='archive-heading'>
-                    <h1>Label: <data:view.search.label/></h1>
-                  </header>
+                  <header class='archive-heading'><h1>Label: <data:view.search.label/></h1></header>
                 <b:elseif cond='data:view.isArchive'/>
-                  <header class='archive-heading'>
-                    <h1><data:blog.pageName/></h1>
-                  </header>
+                  <header class='archive-heading'><h1><data:blog.pageName/></h1></header>
                 </b:if>
 
                 <!-- INDIVIDUAL POST -->
                 <b:if cond='data:view.isSingleItem'>
-
                   <b:loop values='data:posts' var='post'>
-
-                    <article class='post-entry post-single'
-                             itemscope='itemscope'
-                             itemtype='https://schema.org/BlogPosting'>
-
+                    <article class='post-entry post-single' itemscope='itemscope' itemtype='https://schema.org/BlogPosting'>
+                      
                       <header class='post-header'>
-                        <h1 class='post-title' itemprop='headline'>
-                          <data:post.title/>
-                        </h1>
-
+                        <h1 class='post-title' itemprop='headline'><data:post.title/></h1>
                         <div class='post-meta'>
-                          <span class='post-date'>
-                            <data:post.timestamp/>
-                          </span>
-                          <span class='post-comment-count'>
-                            <data:post.numberOfComments/> comments
-                          </span>
+                          <span class='post-date'><data:post.timestamp/></span>
+                          <span class='post-comment-count'><data:post.numberOfComments/> comments</span>
                         </div>
                       </header>
 
                       <b:if cond='data:post.featuredImage'>
                         <div class='post-featured-image'>
-                          <img expr:alt='data:post.title'
-                               expr:src='resizeImage(data:post.featuredImage, 1200, "16:9")'
-                               itemprop='image'/>
+                          <img expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 1200, "16:9")' itemprop='image'/>
                         </div>
                       </b:if>
 
@@ -142,183 +120,108 @@
                       <footer class='post-footer'>
                         <div class='post-labels'>
                           <b:loop values='data:post.labels' var='label'>
-                            <a expr:href='data:label.url'>
-                              <data:label.name/>
-                            </a>
+                            <a expr:href='data:label.url'><data:label.name/></a>
                           </b:loop>
                         </div>
                       </footer>
-
                       <b:include data='post' name='comments'/>
-
                     </article>
-
                   </b:loop>
-
                 <b:else/>
 
                   <!-- HOMEPAGE AND ARCHIVE ARTICLE LIST -->
                   <div class='post-list'>
-
                     <b:loop values='data:posts' var='post'>
-
                       <article class='post-entry post-card'>
 
-                        <!-- TITLE -->
+                        <!-- 1. TITLE FIRST -->
                         <b:if cond='data:post.title'>
                           <header class='post-header'>
                             <h2 class='post-title'>
-                              <a expr:href='data:post.url'>
-                                <data:post.title/>
-                              </a>
+                              <a expr:href='data:post.url'><data:post.title/></a>
                             </h2>
                           </header>
                         </b:if>
 
-                        <!-- FEATURED IMAGE -->
+                        <!-- 2. IMAGE SECOND (EDGE TO EDGE) -->
                         <b:if cond='data:post.featuredImage'>
-                          <a class='post-image-link'
-                             expr:href='data:post.url'>
-                            <img class='post-thumbnail'
-                                 expr:alt='data:post.title'
-                                 expr:src='resizeImage(data:post.featuredImage, 800, "16:9")'/>
+                          <a class='post-image-link' expr:href='data:post.url'>
+                            <img class='post-thumbnail' expr:alt='data:post.title' expr:src='resizeImage(data:post.featuredImage, 800, "16:9")'/>
                           </a>
                         </b:if>
 
-                        <!-- EXCERPT (Using short snippet for plain text) -->
+                        <!-- 3. EXCERPT -->
                         <div class='post-excerpt'>
                           <data:post.snippets.short/>
                         </div>
 
-                        <!-- READ MORE BUTTON -->
-                        <a class='read-more'
-                           expr:href='data:post.url'>
-                          Read more
-                        </a>
+                        <!-- 4. READ MORE -->
+                        <a class='read-more' expr:href='data:post.url'>Read more</a>
 
-                        <!-- METADATA -->
+                        <!-- 5. METADATA (Stacked vertically to match reference) -->
                         <footer class='post-meta'>
-
                           <span class='post-categories'>
+                            <i class='meta-icon'>&#128193;</i> <!-- Folder icon -->
                             <b:loop values='data:post.labels' var='label'>
-                              <a expr:href='data:label.url'>
-                                <data:label.name/>
-                              </a>
+                              <a expr:href='data:label.url'><data:label.name/></a>
                             </b:loop>
                           </span>
-
-                          <a class='post-comment-count'
-                             expr:href='data:post.url + &quot;#comments&quot;'>
+                          <a class='post-comment-count' expr:href='data:post.url + &quot;#comments&quot;'>
+                            <i class='meta-icon'>&#128172;</i> <!-- Speech bubble icon -->
                             <data:post.numberOfComments/> comments
                           </a>
-
                         </footer>
 
                       </article>
-
                     </b:loop>
-
                   </div>
 
                   <!-- NATIVE BLOGGER PAGINATION -->
                   <nav aria-label='Post pagination' class='blog-pager'>
-
                     <b:if cond='data:newerPageUrl'>
-                      <a class='newer-posts'
-                         expr:href='data:newerPageUrl'>
-                        &#8592; Previous
-                      </a>
+                      <a class='newer-posts' expr:href='data:newerPageUrl'>&#8592; Previous</a>
                     </b:if>
-
                     <b:if cond='data:olderPageUrl'>
-                      <a class='older-posts'
-                         expr:href='data:olderPageUrl'>
-                        Next &#8594;
-                      </a>
+                      <a class='older-posts' expr:href='data:olderPageUrl'>Next &#8594;</a>
                     </b:if>
-
                   </nav>
-
                 </b:if>
-
               </b:if>
-
             </b:includable>
-
           </b:widget>
-
         </b:section>
-
       </main>
 
       <!-- SIDEBAR -->
       <aside aria-label='Sidebar' class='sidebar' role='complementary'>
-
-        <b:section class='sidebar-section'
-                   id='sidebar'
-                   name='Sidebar'
-                   showaddelement='yes'>
-
-          <b:widget id='Label1' locked='false'
-                    title='Categories' type='Label' version='2'/>
-
-          <b:widget id='BlogArchive1' locked='false'
-                    title='Archive' type='BlogArchive' version='2'/>
-
+        <b:section class='sidebar-section' id='sidebar' name='Sidebar' showaddelement='yes'>
+          <b:widget id='Label1' locked='false' title='Categories' type='Label' version='2'/>
+          <b:widget id='BlogArchive1' locked='false' title='Archive' type='BlogArchive' version='2'/>
         </b:section>
-
       </aside>
-
     </div>
 
     <!-- FOOTER -->
     <footer class='site-footer' role='contentinfo'>
-
       <div class='footer-search'>
         <h2 class='footer-search-title'>Looking for Something?</h2>
-
-        <b:section class='footer-search-section'
-                   id='footer-search'
-                   maxwidgets='1'
-                   name='Footer Search'
-                   showaddelement='no'>
-
-          <b:widget id='BlogSearch2' locked='false'
-                    title='Search' type='BlogSearch' version='2'/>
-
+        <b:section class='footer-search-section' id='footer-search' maxwidgets='1' name='Footer Search' showaddelement='no'>
+          <b:widget id='BlogSearch2' locked='false' title='Search' type='BlogSearch' version='2'/>
         </b:section>
       </div>
-
-      <b:section class='footer-section'
-                 id='footer'
-                 name='Footer'
-                 showaddelement='yes'>
-
-        <b:widget id='Attribution1' locked='true'
-                  title='' type='Attribution' version='2'/>
-
+      <b:section class='footer-section' id='footer' name='Footer' showaddelement='yes'>
+        <b:widget id='Attribution1' locked='true' title='' type='Attribution' version='2'/>
       </b:section>
-
       <div class='copyright'>
         <data:blog.title/> &#169; <data:blog.timestamp/>
       </div>
-
     </footer>
-
   </div>
 
-  <!-- BACK TO TOP -->
-  <button aria-label='Back to top'
-          class='back-to-top'
-          id='back-to-top'
-          type='button'
-          title='Back to top'>
-    &#8593;
-  </button>
+  <button aria-label='Back to top' class='back-to-top' id='back-to-top' type='button' title='Back to top'>&#8593;</button>
 
   <script type='text/javascript'>//<![CDATA[
 {{SCRIPTS}}
   //]]></script>
-
 </body>
 </html>
