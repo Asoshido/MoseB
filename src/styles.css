@@ -1,4 +1,3 @@
-
 /* =========================================================
    MOSEB — STAGE 2
    Homepage visual recreation
@@ -12,7 +11,7 @@
   color-scheme: light;
   --page-background: #ffffff;
   --text-color: #242424;
-  --muted-color: #858585;
+  --muted-color: #999999;
   --border-color: #e8e8e8;
   --accent-color: #e87591;
   --accent-dark: #d96180;
@@ -33,7 +32,8 @@ body {
   min-width: 320px;
   background: var(--page-background);
   color: var(--text-color);
-  font-family: Arial, Helvetica, sans-serif;
+  /* Using a cleaner sans-serif that mimics the reference better */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -76,8 +76,7 @@ button {
 
 .site-header {
   background: #fff;
-  border-bottom: 1px solid var(--border-color);
-  padding: 42px 20px 38px;
+  padding: 45px 20px 35px;
 }
 
 .header-section {
@@ -90,39 +89,28 @@ button {
   margin: 0;
 }
 
+/* Header Layout to match reference */
 .header-section .header-widget {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
-  gap: 18px;
-  text-align: center;
-}
-
-.header-section .header-image-wrapper {
-  margin: 0;
-  line-height: 0;
-}
-
-.header-section .header-image {
-  display: block;
-  width: auto;
-  max-width: min(100%, 270px);
-  height: auto;
-  margin: 0 auto;
+  gap: 20px;
+  text-align: left;
 }
 
 .header-section .header-widget h1 {
   margin: 0;
-  color: #333;
-  font-family: Georgia, serif;
-  font-size: 30px;
-  font-weight: 600;
-  line-height: 1.2;
+  /* Using a serif that mimics the logo script */
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1.1;
+  font-style: italic; /* Mimics the Olubunmi Mabel script */
+  letter-spacing: -0.5px;
 }
 
 .header-section .header-widget h1 a {
-  color: inherit;
+  color: #2c5b58; /* Teal color from logo */
 }
 
 .header-section .descriptionwrapper {
@@ -131,11 +119,11 @@ button {
 
 .header-section .description {
   margin: 0;
-  color: #d97887;
+  color: #7a7a7a;
   font-family: Georgia, serif;
-  font-size: 17px;
-  font-style: italic;
-  line-height: 1.5;
+  font-size: 14px;
+  line-height: 1.4;
+  max-width: 60px; /* Forces the tagline to stack vertically */
 }
 
 /* -------------------------
@@ -147,6 +135,7 @@ button {
   z-index: 10;
   background: #fff;
   border-bottom: 1px solid var(--border-color);
+  border-top: 1px solid var(--border-color);
 }
 
 .navigation-inner {
@@ -156,31 +145,29 @@ button {
   gap: 20px;
   width: 100%;
   max-width: var(--content-width);
-  min-height: 58px;
+  min-height: 50px;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px;
 }
 
 .menu-toggle {
   display: none;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  min-height: 42px;
-  padding: 8px 10px;
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 0;
   border: 0;
   background: transparent;
   color: #333;
-  font-size: 14px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .menu-toggle-icon {
-  font-size: 21px;
+  font-size: 16px;
   line-height: 1;
-}
-
-.menu-toggle-label {
-  font-size: 13px;
 }
 
 .navigation-section {
@@ -215,8 +202,9 @@ button {
   display: block;
   padding: 15px 12px;
   color: #444;
-  font-size: 13px;
-  font-weight: 500;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
   text-transform: uppercase;
   transition: color .2s ease;
 }
@@ -226,12 +214,9 @@ button {
   color: var(--accent-dark);
 }
 
+/* Hide the giant search bar in the nav, just show icon on mobile */
 .navigation-search {
   flex: 0 0 auto;
-}
-
-.navigation-search .widget {
-  margin: 0;
 }
 
 .navigation-search .widget h2 {
@@ -257,10 +242,6 @@ button {
   background: #fff;
   color: #444;
   font-size: 13px;
-}
-
-.navigation-search input:focus {
-  border-color: var(--accent-color);
 }
 
 .navigation-search input[type="submit"],
@@ -295,10 +276,6 @@ button {
   width: 100%;
 }
 
-.main-section .widget {
-  margin: 0;
-}
-
 .main-section .widget h2 {
   display: none;
 }
@@ -316,7 +293,7 @@ button {
 }
 
 .post-card {
-  margin: 0 0 52px;
+  margin: 0 0 60px;
   padding: 0;
 }
 
@@ -325,22 +302,17 @@ button {
 }
 
 .post-card .post-title {
-  margin: 0 0 19px;
-  color: #242424;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 27px;
-  font-weight: 700;
-  line-height: 1.3;
+  margin: 0 0 20px;
+  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 28px;
+  font-weight: 800; /* Very bold title */
+  line-height: 1.25;
   overflow-wrap: break-word;
 }
 
 .post-card .post-title a {
   color: inherit;
-  transition: color .2s ease;
-}
-
-.post-card .post-title a:hover {
-  color: var(--accent-dark);
 }
 
 /* -------------------------
@@ -350,7 +322,7 @@ button {
 .post-image-link {
   display: block;
   width: 100%;
-  margin: 0 0 23px;
+  margin: 0 0 25px;
   overflow: hidden;
   background: #f5f5f5;
 }
@@ -360,7 +332,7 @@ button {
   width: 100%;
   height: auto;
   margin: 0;
-  object-fit: contain;
+  object-fit: cover;
 }
 
 /* -------------------------
@@ -368,16 +340,12 @@ button {
    ------------------------- */
 
 .post-excerpt {
-  margin: 0 0 21px;
-  color: #777;
-  font-size: 16px;
+  margin: 0 0 25px;
+  color: #444;
+  font-size: 18px;
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.8;
   overflow-wrap: break-word;
-}
-
-.post-excerpt p {
-  margin: 0;
 }
 
 /* -------------------------
@@ -388,28 +356,24 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 42px;
-  margin: 0 0 20px;
-  padding: 9px 22px;
-  border: 1px solid #333;
+  min-height: 44px;
+  margin: 0 0 25px;
+  padding: 10px 25px;
+  border: 1px solid #000; /* Thin black border */
   border-radius: 0;
-  background: #fff;
-  color: #333;
+  background: #fff; /* White background */
+  color: #000;
   font-size: 12px;
   font-weight: 600;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
   line-height: 1.3;
   text-align: center;
   text-transform: uppercase;
-  transition:
-    background .2s ease,
-    color .2s ease,
-    border-color .2s ease;
+  transition: background .2s ease, color .2s ease;
 }
 
 .read-more:hover {
-  border-color: var(--accent-color);
-  background: var(--accent-color);
+  background: #000;
   color: #fff;
 }
 
@@ -419,41 +383,32 @@ button {
 
 .post-meta {
   display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 7px 14px;
+  flex-direction: column; /* Stacks them vertically like the reference */
+  align-items: flex-start;
+  gap: 8px;
   margin: 0;
   color: var(--muted-color);
-  font-size: 12px;
+  font-size: 13px;
   line-height: 1.6;
 }
 
-.post-categories {
+.post-categories, .post-comment-count {
   display: flex;
-  flex-wrap: wrap;
-  gap: 5px 10px;
+  align-items: center;
+  gap: 6px;
+}
+
+.meta-icon {
+  font-style: normal;
+  color: #ccc;
+  font-size: 14px;
 }
 
 .post-categories a,
 .post-labels a {
-  color: #888;
-  font-size: 12px;
-  text-transform: uppercase;
-}
-
-.post-categories a:hover,
-.post-labels a:hover,
-.post-comment-count:hover {
-  color: var(--accent-dark);
-}
-
-.post-comment-count {
-  color: #888;
-  font-size: 12px;
-}
-
-.post-card + .post-card {
-  border-top: 0;
+  color: var(--muted-color);
+  font-size: 13px;
+  text-transform: capitalize; /* Not uppercase in reference */
 }
 
 /* -------------------------
@@ -463,11 +418,11 @@ button {
 .blog-pager {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 15px;
-  margin: 35px 0 20px;
+  margin: 40px 0 20px;
   padding: 20px 0;
-  border-top: 1px solid var(--border-color);
+  border-top: 1px solid #f0f0f0;
 }
 
 .blog-pager a {
@@ -476,43 +431,14 @@ button {
   justify-content: center;
   min-height: 40px;
   padding: 8px 15px;
-  border: 1px solid var(--accent-color);
-  color: var(--accent-dark);
-  font-size: 13px;
-  transition: background .2s ease, color .2s ease;
-}
-
-.blog-pager a:hover {
-  background: var(--accent-color);
-  color: #fff;
-}
-
-/* -------------------------
-   ARCHIVE AND SEARCH HEADINGS
-   ------------------------- */
-
-.archive-heading {
-  margin: 0 0 30px;
-  padding: 0 0 17px;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.archive-heading h1 {
-  margin: 0;
-  color: #333;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 25px;
-  font-weight: 700;
-  line-height: 1.35;
+  border: 1px solid var(--border-color);
+  color: var(--accent-color);
+  font-size: 14px;
 }
 
 /* -------------------------
    SIDEBAR
    ------------------------- */
-
-.sidebar {
-  min-width: 0;
-}
 
 .sidebar-section .widget {
   margin: 0 0 35px;
@@ -522,10 +448,10 @@ button {
   margin: 0 0 16px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--border-color);
-  color: #333;
-  font-family: Georgia, serif;
-  font-size: 18px;
-  font-weight: 600;
+  color: #000;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
 }
 
 .sidebar-section ul {
@@ -538,43 +464,7 @@ button {
   padding: 9px 0;
   border-bottom: 1px solid #f0f0f0;
   color: #777;
-  font-size: 13px;
-}
-
-/* -------------------------
-   SINGLE POST
-   Basic structure retained.
-   Detailed article-page styling
-   belongs to Stage 3.
-   ------------------------- */
-
-.post-single .post-title {
-  margin: 0 0 15px;
-  color: #242424;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.post-single .post-featured-image {
-  margin: 22px 0;
-}
-
-.post-single .post-featured-image img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.post-single .post-body {
-  color: #444;
-  font-size: 17px;
-  line-height: 1.8;
-}
-
-.post-single .post-footer {
-  margin-top: 35px;
+  font-size: 14px;
 }
 
 /* -------------------------
@@ -582,38 +472,25 @@ button {
    ------------------------- */
 
 .site-footer {
-  clear: both;
   background: var(--footer-background);
   color: #fff;
-  padding: 38px 20px 0;
+  padding: 50px 20px 0;
 }
 
 .footer-search {
   width: 100%;
-  max-width: 650px;
+  max-width: 600px;
   margin: 0 auto;
-  padding: 0 0 35px;
+  padding: 0 0 40px;
   text-align: center;
 }
 
 .footer-search-title {
-  margin: 0 0 18px;
+  margin: 0 0 20px;
   color: #fff;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: 22px;
-  font-weight: 600;
-}
-
-.footer-search-section {
-  width: 100%;
-}
-
-.footer-search-section .widget {
-  margin: 0;
-}
-
-.footer-search-section .widget h2 {
-  display: none;
+  font-size: 24px;
+  font-weight: 700;
 }
 
 .footer-search-section form {
@@ -621,7 +498,7 @@ button {
   align-items: stretch;
   justify-content: center;
   width: 100%;
-  max-width: 540px;
+  max-width: 500px;
   margin: 0 auto;
 }
 
@@ -631,30 +508,26 @@ button {
   flex: 1 1 auto;
   width: 100%;
   min-width: 0;
-  min-height: 47px;
+  min-height: 50px;
   padding: 12px 15px;
   border: 1px solid #fff;
-  border-radius: 0;
   outline: none;
   background: #fff;
   color: #333;
-  font-size: 14px;
-}
-
-.footer-search-section input:focus {
-  border-color: #333;
+  font-size: 16px;
 }
 
 .footer-search-section input[type="submit"],
 .footer-search-section button {
   flex: 0 0 auto;
-  min-height: 47px;
-  padding: 10px 18px;
-  border: 1px solid #fff;
-  border-radius: 0;
+  min-height: 50px;
+  padding: 10px 25px;
+  border: 0;
   background: #333;
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 /* -------------------------
@@ -668,24 +541,19 @@ button {
   text-align: center;
 }
 
-.footer-section .widget {
-  margin: 0;
-}
-
 .footer-section,
 .footer-section a {
   color: #fff;
-  font-size: 11px;
+  font-size: 12px;
 }
 
 .copyright {
   width: 100%;
   margin: 0;
-  padding: 17px 10px 20px;
-  border-top: 1px solid rgba(255,255,255,.25);
+  padding: 20px 10px;
+  border-top: 1px solid rgba(255,255,255,.2);
   color: #fff;
   font-size: 12px;
-  line-height: 1.6;
   text-align: center;
 }
 
@@ -695,55 +563,19 @@ button {
 
 .back-to-top {
   position: fixed;
-  right: 18px;
-  bottom: 18px;
+  right: 20px;
+  bottom: 20px;
   z-index: 50;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: 0;
-  border-radius: 0;
-  background: var(--accent-color);
+  background: #999; /* Grey background */
   color: #fff;
-  font-size: 22px;
-  line-height: 1;
-  box-shadow: 0 2px 8px rgba(0,0,0,.12);
-  transition: background .2s ease;
-}
-
-.back-to-top:hover {
-  background: var(--accent-dark);
-}
-
-.back-to-top[hidden] {
-  display: none !important;
-}
-
-/* -------------------------
-   ERROR PAGE
-   ------------------------- */
-
-.page-state {
-  padding: 30px 0;
-}
-
-.page-state h1 {
-  font-family: Georgia, serif;
-  font-size: 28px;
-}
-
-/* -------------------------
-   KEYBOARD ACCESSIBILITY
-   ------------------------- */
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible {
-  outline: 2px solid var(--accent-dark);
-  outline-offset: 3px;
+  font-size: 20px;
 }
 
 /* =========================================================
@@ -753,35 +585,29 @@ input:focus-visible {
 @media (max-width: 760px) {
 
   /* HEADER */
-
   .site-header {
-    padding: 35px 20px 32px;
+    padding: 40px 20px 30px;
   }
 
   .header-section .header-widget {
-    gap: 10px;
-  }
-
-  .header-section .header-image {
-    max-width: min(100%, 230px);
+    gap: 15px;
   }
 
   .header-section .header-widget h1 {
-    font-size: 26px;
+    font-size: 32px;
   }
 
   .header-section .description {
-    font-size: 15px;
+    font-size: 13px;
   }
 
   /* NAVIGATION */
-
   .navigation-inner {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     gap: 0;
-    min-height: 54px;
+    min-height: 50px;
     padding: 5px 15px;
   }
 
@@ -790,22 +616,23 @@ input:focus-visible {
     justify-self: start;
   }
 
-  .navigation-search {
-    justify-self: end;
-    width: auto;
-    max-width: 100%;
+  /* Hide the input field in mobile nav, show only search icon */
+  .navigation-search form input[type="text"],
+  .navigation-search form input[type="search"],
+  .navigation-search form input[name="q"],
+  .navigation-search form input[type="submit"] {
+    display: none;
   }
 
-  .navigation-search input[type="text"],
-  .navigation-search input[type="search"],
-  .navigation-search input[name="q"] {
-    width: 125px;
+  .navigation-search form::before {
+    content: '\1F50D'; /* Magnifying glass icon */
+    font-size: 18px;
+    cursor: pointer;
   }
 
   .navigation-section {
     grid-column: 1 / -1;
     width: 100%;
-    min-width: 0;
     border-top: 1px solid var(--border-color);
   }
 
@@ -818,172 +645,46 @@ input:focus-visible {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    padding: 7px 0;
+    padding: 10px 0;
   }
 
   .navigation-section .widget-content li {
-    display: block;
-    width: 100%;
     border-bottom: 1px solid #f1f1f1;
   }
 
-  .navigation-section .widget-content li:last-child {
-    border-bottom: 0;
-  }
-
   .navigation-section .widget-content li a {
-    display: block;
-    width: 100%;
-    padding: 12px 7px;
-    font-size: 13px;
+    padding: 15px 10px;
   }
 
   /* MAIN CONTENT */
-
   .content-layout {
     display: block;
-    width: 100%;
-    padding: 27px 20px 42px;
-  }
-
-  .main-content {
-    width: 100%;
+    padding: 30px 20px 50px;
   }
 
   /* ARTICLE CARDS */
-
   .post-card {
-    margin-bottom: 50px;
+    margin-bottom: 60px;
   }
 
   .post-card .post-title {
-    margin-bottom: 18px;
-    font-size: 27px;
-    line-height: 1.3;
+    font-size: 26px;
   }
 
-  /* FEATURED IMAGE EDGE-TO-EDGE */
-
+  /* MAKE FEATURED IMAGE EDGE-TO-EDGE (Crucial Fix) */
   .post-image-link {
     width: calc(100% + 40px);
-    max-width: none;
-    margin: 0 -20px 22px;
+    margin: 0 -20px 25px;
   }
-
-  .post-thumbnail {
-    width: 100%;
-    height: auto;
-  }
-
-  /* EXCERPT */
 
   .post-excerpt {
-    margin-bottom: 20px;
-    color: #777;
-    font-size: 16px;
-    line-height: 1.75;
-  }
-
-  /* READ MORE */
-
-  .read-more {
-    min-height: 41px;
-    margin-bottom: 19px;
-    padding: 9px 20px;
-  }
-
-  /* METADATA */
-
-  .post-meta {
-    gap: 6px 12px;
-    font-size: 11px;
-  }
-
-  .post-categories a,
-  .post-comment-count {
-    font-size: 11px;
-  }
-
-  /* PAGINATION */
-
-  .blog-pager {
-    margin-top: 30px;
-    padding: 18px 0;
-  }
-
-  /* SIDEBAR */
-
-  .sidebar {
-    margin-top: 35px;
+    font-size: 17px;
+    line-height: 1.8;
   }
 
   /* FOOTER */
-
   .site-footer {
-    padding: 35px 20px 0;
-  }
-
-  .footer-search {
-    padding-bottom: 30px;
-  }
-
-  .footer-search-title {
-    font-size: 21px;
-  }
-
-  .copyright {
-    font-size: 11px;
-  }
-
-  /* BACK TO TOP */
-
-  .back-to-top {
-    right: 14px;
-    bottom: 14px;
-    width: 40px;
-    height: 40px;
+    padding: 40px 20px 0;
   }
 
 }
-
-/* =========================================================
-   SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 380px) {
-
-  .site-header {
-    padding: 28px 15px;
-  }
-
-  .content-layout {
-    padding-right: 16px;
-    padding-left: 16px;
-  }
-
-  .post-image-link {
-    width: calc(100% + 32px);
-    margin-right: -16px;
-    margin-left: -16px;
-  }
-
-  .post-card .post-title {
-    font-size: 25px;
-  }
-
-  .navigation-inner {
-    padding-right: 10px;
-    padding-left: 10px;
-  }
-
-  .navigation-search input[type="text"],
-  .navigation-search input[type="search"],
-  .navigation-search input[name="q"] {
-    width: 110px;
-  }
-
-}
-
-/* =========================================================
-   END STAGE 2 STYLES
-   ========================================================= */
