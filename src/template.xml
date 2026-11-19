@@ -39,7 +39,6 @@
                 class='menu-toggle'
                 id='menu-toggle'
                 type='button'>
-          <!-- CHANGED TO HAMBURGER ICON -->
           <span class='menu-toggle-icon' aria-hidden='true'>&#9776;</span>
           <span class='menu-toggle-label'>Menu</span>
         </button>
@@ -136,11 +135,11 @@
                     <b:loop values='data:posts' var='post'>
                       <article class='post-entry post-card'>
 
-                        <!-- 1. TITLE FIRST (Removed conditional to force rendering if empty, just in case) -->
+                        <!-- 1. TITLE FIRST (FORCED, NO IF CONDITION) -->
                         <header class='post-header'>
                           <h2 class='post-title'>
                             <a expr:href='data:post.url'>
-                              <b:if cond='data:post.title'><data:post.title/><b:else/>Untitled Post</b:if>
+                              <data:post.title/>
                             </a>
                           </h2>
                         </header>
