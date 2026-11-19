@@ -64,7 +64,7 @@ button {
 .site-header {
   background: #fff;
   padding: 45px 20px 35px;
-  text-align: center; /* Centers the logo */
+  text-align: center;
 }
 
 .header-section {
@@ -80,7 +80,7 @@ button {
 .custom-logo-image {
   max-width: 100%;
   height: auto;
-  max-height: 80px; /* Prevents logo from being too tall */
+  max-height: 80px;
   width: auto;
 }
 
@@ -124,7 +124,7 @@ button {
 }
 
 .menu-toggle-icon {
-  font-size: 16px;
+  font-size: 20px; /* Made hamburger slightly larger */
   line-height: 1;
 }
 
@@ -228,15 +228,13 @@ button {
 .post-card {
   margin: 0 0 60px;
   padding: 0;
-  /* Ensure nothing overlaps */
-  display: flex;
-  flex-direction: column;
+  /* Flexbox removed to let natural HTML flow work perfectly */
+  display: block; 
 }
 
 /* The Title */
 .post-card .post-header {
   margin: 0;
-  order: 1; /* Title first */
 }
 
 .post-card .post-title {
@@ -254,7 +252,6 @@ button {
   margin: 0 0 25px;
   overflow: hidden;
   background: #f5f5f5;
-  order: 2; /* Image second */
 }
 
 .post-thumbnail {
@@ -271,7 +268,6 @@ button {
   color: #444;
   font-size: 18px;
   line-height: 1.8;
-  order: 3;
 }
 
 /* Read More Button */
@@ -279,7 +275,6 @@ button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  align-self: flex-start; /* Prevents button from stretching full width */
   min-height: 44px;
   margin: 0 0 25px;
   padding: 10px 25px;
@@ -290,7 +285,6 @@ button {
   font-weight: 600;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  order: 4;
 }
 
 /* Metadata */
@@ -302,7 +296,6 @@ button {
   margin: 0;
   color: var(--muted-color);
   font-size: 13px;
-  order: 5;
 }
 
 .post-categories, .post-comment-count {
@@ -534,20 +527,18 @@ button {
     padding: 30px 20px 50px;
   }
 
-  /* ARTICLE CARDS - CRUCIAL FIXES HERE */
+  /* ARTICLE CARDS */
   .post-card {
     margin-bottom: 60px;
   }
 
-  /* Force title to be visible on mobile */
   .post-card .post-title {
     font-size: 26px;
     display: block;
-    visibility: visible;
     margin-bottom: 15px;
   }
 
-  /* Make image edge-to-edge without breaking the layout */
+  /* Make image edge-to-edge */
   .post-image-link {
     width: calc(100% + 40px);
     margin: 0 -20px 25px;
