@@ -124,7 +124,7 @@ button {
 }
 
 .menu-toggle-icon {
-  font-size: 20px; /* Made hamburger slightly larger */
+  font-size: 20px;
   line-height: 1;
 }
 
@@ -157,6 +157,7 @@ button {
   text-transform: uppercase;
 }
 
+/* Mobile Search Icon Styling */
 .navigation-search {
   flex: 0 0 auto;
 }
@@ -228,21 +229,32 @@ button {
 .post-card {
   margin: 0 0 60px;
   padding: 0;
-  /* Flexbox removed to let natural HTML flow work perfectly */
   display: block; 
 }
 
-/* The Title */
+/* THE BRUTE FORCE TITLE FIX */
 .post-card .post-header {
-  margin: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block !important;
+  height: auto !important;
 }
 
 .post-card .post-title {
-  margin: 0 0 20px;
-  color: #000;
-  font-size: 28px;
-  font-weight: 800;
-  line-height: 1.25;
+  margin: 0 0 20px !important;
+  padding: 0 !important;
+  color: #000 !important;
+  font-size: 28px !important;
+  font-weight: 800 !important;
+  line-height: 1.25 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.post-card .post-title a {
+  display: block !important;
+  color: #000 !important;
 }
 
 /* The Image */
@@ -482,17 +494,26 @@ button {
     justify-self: start;
   }
 
+  /* MOBILE SEARCH ICON FIX */
+  .navigation-search form {
+    display: flex;
+    align-items: center;
+  }
+
   .navigation-search form input[type="text"],
   .navigation-search form input[type="search"],
   .navigation-search form input[name="q"],
   .navigation-search form input[type="submit"] {
-    display: none;
+    display: none !important;
   }
 
   .navigation-search form::before {
-    content: '\1F50D';
+    content: '\1F50D'; /* Magnifying glass */
     font-size: 18px;
+    font-weight: 300;
+    color: #333;
     cursor: pointer;
+    display: block;
   }
 
   .navigation-section {
@@ -533,9 +554,8 @@ button {
   }
 
   .post-card .post-title {
-    font-size: 26px;
-    display: block;
-    margin-bottom: 15px;
+    font-size: 26px !important;
+    margin-bottom: 15px !important;
   }
 
   /* Make image edge-to-edge */
